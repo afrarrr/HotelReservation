@@ -17,7 +17,7 @@ public class MainMenu {
     
     public static HotelResource hotelResource;
     public static AdminResource adminResource;
-    private static String DEFAULT_DATE_FORMAT = "MM/dd/yyyy";
+    private static String Dateformat = "MM/dd/yyyy";
     public static CustomerService customerService = CustomerService.getInstance();
     public static ReservationService reservationService = ReservationService.getInstance();
     public static HotelResource hotelresource = HotelResource.getInstance();
@@ -25,36 +25,32 @@ public class MainMenu {
     public static void start() {    
         Scanner scanner = new Scanner(System.in);
         String line = "";
-        try {
-            do {
-                printMainMenu();
-                line = scanner.nextLine();
-                if (line.length() == 1) {
-                    switch (line.charAt(0)) {
-                        case '1':
-                            findAndReserveARoom();
-                            break;
-                        case '2':
-                            seeMyReservations();
-                            break;
-                        case '3':
-                            createAnAccount();
-                            break;
-                        case '4':
-                            AdminMenu.start();
-                            break;
-                        case '5':
-                            System.out.println("Exit");
-                            break;
-                    }
-                } else {
-                    System.out.println("Error: Invalid action\n");
+        do{
+            printMainMenu();
+            line = scanner.nextLine();
+            if (line.length() == 1) {
+                switch (line.charAt(0)) {
+                    case '1':
+                        findAndReserveARoom();
+                        break;
+                    case '2':
+                        seeMyReservations();
+                        break;
+                    case '3':
+                        createAnAccount();
+                        break;
+                    case '4':
+                        AdminMenu.start();
+                        break;
+                    case '5':
+                        System.out.println("Exit");
+                        break;
                 }
+            } else {
+            System.out.println("Error: Invalid action\n");
+            }
+        } while (line.charAt(0) != '5' || line.length() != 1);
 
-            } while (line.charAt(0) != '5' || line.length() != 1);
-        } catch (StringIndexOutOfBoundsException ex) {
-            System.out.println("Empty input received. Exiting program...");
-        }        
     }
     public static void findAndReserveARoom() {
         Collection<IRoom> roomsOpenForReserve = new HashSet<>();
@@ -125,7 +121,7 @@ public class MainMenu {
 
     private static Date getInputDate(Scanner scanner) {
         try {
-            return new SimpleDateFormat(DEFAULT_DATE_FORMAT).parse(scanner.nextLine());
+            return new SimpleDateFormat(Dateformat).parse(scanner.nextLine());
         } catch (ParseException ex) {
             System.out.println("Error: Invalid date.");
         }
