@@ -1,5 +1,5 @@
 # HotelReservation Application 
-### following the project requirements (see below) on Udacity
+### followed the project requirements (see below) on Udacity
 ### User Scenarios
 
 Creating a customer account. The user needs to first create a customer account before they can create a reservation.
