@@ -1,4 +1,4 @@
-# HotelReservation Application 
+# Hotel Reservation Application 
 ### followed the project requirements (see below) on Udacity
 ### User Scenarios
 
