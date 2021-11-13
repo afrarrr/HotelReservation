@@ -17,36 +17,30 @@ public class AdminMenu {
         String line = "";
         Scanner scanner = new Scanner(System.in);
         printMenu();
-        try {
-            do {
-                line = scanner.nextLine();
-
-                if (line.length() == 1) {
-                    switch (line.charAt(0)) {
-                        case '1':
-                            showCustomers();
-                            break;
-                        case '2':
-                            showRooms();
-                            break;
-                        case '3':
-                            showRervations();
-                            break;
-                        case '4':
-                            addARoom();
-                            break;
-                        case '5':
-                            MainMenu.printMainMenu();
-                            break;
-                    }
-                } else {
-                    System.out.println("Error: Invalid action\n");
+        do {
+            line = scanner.nextLine();
+            if (line.length() == 1) {
+                switch (line.charAt(0)) {
+                    case '1':
+                        showCustomers();
+                        break;
+                    case '2':
+                        showRooms();
+                        break;
+                    case '3':
+                        showRervations();
+                        break;
+                    case '4':
+                        addARoom();
+                        break;
+                    case '5':
+                        MainMenu.printMainMenu();
+                        break;
                 }
-            } while (line.charAt(0) != '5' || line.length() != 1);
-        } catch (StringIndexOutOfBoundsException ex) {
-            System.out.println("Empty input received. Exiting program...");
-        }
-        
+            } else {
+                System.out.println("Error: Invalid action\n");
+            }
+        } while (line.charAt(0) != '5' || line.length() != 1);
     }
 
     public static void showCustomers(){
@@ -117,8 +111,7 @@ public class AdminMenu {
                 continue;
             }
         } 
-
-
+        
         if (addRoom.equals("n")){
             adminResource.addRoom(rooms);
             printMenu();
