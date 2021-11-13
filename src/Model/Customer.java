@@ -9,7 +9,7 @@ public class Customer {
     private String lastName;
     private String email;
 
-    private static final String EMAIL_REGEX_PATTERN = "^(.+)@(.+).(.+)$";
+    private static final String emailpattern = "^(.+)@(.+).(.+)$";
 
     public Customer (String email, String firstName, String lastName){
         this.emailVerify(email);
@@ -20,7 +20,7 @@ public class Customer {
 
     // verify if the email format is right
     private void emailVerify(final String email) {
-        Pattern pattern = Pattern.compile(EMAIL_REGEX_PATTERN);
+        Pattern pattern = Pattern.compile(emailpattern);
 
         if(!pattern.matcher(email).matches()) {
             throw new IllegalArgumentException("Invalid email");
