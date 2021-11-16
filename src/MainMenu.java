@@ -41,7 +41,7 @@ public class MainMenu {
                     adminMenu.start();
                 } else if (selection == 5) {
                     System.out.println("YOU ARE GOING TO LEAVE THIS VERY COOL AND AWESOME APPLICATION NOW. GOODBYE");
-                    keepRunning = false;
+                    break;
                 }
             } catch (Exception ex) {
                 System.out.println("THERE IS AN ERROR... \n CALCULATING............. \n MISTAKE FOUND, YOU MUST HAVE DONE SOMETHING,  FIX IT FAST BEFORE  YOUR PC EXPLODES THEN IMPLODES");
@@ -62,7 +62,8 @@ public class MainMenu {
         Date checkOut = getInputDate(scanner);
 
         if (checkIn != null && checkOut != null) {
-            roomsOpenForReserve = hotelresource.findARoom(checkIn, checkOut);  
+            roomsOpenForReserve = hotelresource.findARoom(checkIn, checkOut);
+            System.out.println(roomsOpenForReserve.size());  
             if (roomsOpenForReserve.size()!=0){
                     System.out.println("Would you like to book a room? y/n");
                     option = scanner.next();

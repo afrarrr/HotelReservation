@@ -45,11 +45,9 @@ public class AdminMenu {
         if (customers.size()!=0){
             for (Customer customer : customers) {
                 System.out.println(customer);
-                printMenu();
             }
         } else{
             System.out.println("No cucstomer was found");
-            printMenu();
         }
     }
 
@@ -59,16 +57,13 @@ public class AdminMenu {
             for (IRoom room : rooms) {
                 System.out.println(room);
             }
-            printMenu();
         } else{
             System.out.println("No room was found");
-            printMenu();
         }    
     }
 
     public static void showRervations(){
         adminResource.displayAllReservations();
-        printMenu();
     }
 
     private static void addARoom(){
@@ -111,7 +106,6 @@ public class AdminMenu {
         
         if (addRoom.equals("n")){
             adminResource.addRoom(rooms);
-            printMenu();
         }
     }
     private static void printMenu() {

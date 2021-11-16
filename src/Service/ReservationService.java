@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
-
+import java.util.LinkedHashSet;
 
 import Model.Customer;
 import Model.IRoom;
@@ -38,42 +38,25 @@ public class ReservationService {
 
     //find the rooms which are free based on the 2 dates you receive as the argument
     public Collection<IRoom> findRooms(Date checkInDate, Date checkOutDate) {
-        Collection <IRoom> freerooms = new HashSet<>();
-        System.out.println(roomlist);
-        if (reservations.size() == 0){
-            return roomlist;
-        }else {
-            
-            for(Reservation res : reservations) {
-                for (IRoom rom : roomlist){
-                    if ((res.getRoom().getRoomNumber()).equals(rom.getRoomNumber())){
-                        if ((res.getCheckInDate().before(checkInDate)) && (res.getCheckOutDate().before(checkOutDate))){
-                            freerooms.add(rom);
+        Collection <IRoom> freerooms = new LinkedHashSet<>();
+        freerooms = roomlist;
+        if (reservations.size() == 0){            
+            return freerooms;
+        }else {        
+            for(Reservation res: reservations) {
+                for (IRoom rom : freerooms){
+                    if (res.getRoom().getRoomNumber().equals(rom.getRoomNumber())){
+                        if(res.getCheckInDate().before(checkOutDate) || res.getCheckOutDate().after(checkInDate)){
+                            freerooms.remove(rom);
                         }
-                        if ((res.getCheckInDate().after(checkInDate)) && (res.getCheckOutDate().after(checkOutDate))){
-                            freerooms.add(rom);
+                        if (res.getCheckInDate().before(checkInDate) && res.getCheckOutDate().after(checkOutDate)){
+                            freerooms.remove(rom);
                         }
-                    }else {
-                        freerooms.add(rom);
                     }
                 }
+
             }
         }
-        
-/*             for(Reservation res : reservations) {
-                for (IRoom rom : roomlist) {
-                    if ((rom.getRoomNumber().equals(res.room.getRoomNumber()))
-                            && ((checkInDate.before(res.getCheckInDate()) && checkOutDate.before(res.getCheckInDate()))
-                                || (checkInDate.after(res.getCheckOutDate()) && checkOutDate.after(res.getCheckOutDate())))
-                        || (!res.room.getRoomNumber().contains(rom.getRoomNumber()))) {
-                            freerooms.add(rom);
-
-                    } else if (rom.getRoomNumber().equals(res.room.getRoomNumber())) {
-                        freerooms.remove(rom);
-                    }
-                }
-            } */
-        System.out.println(freerooms.size());
         return freerooms;
     }
   
