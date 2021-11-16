@@ -22,36 +22,34 @@ public class MainMenu {
     public static ReservationService reservationService = ReservationService.getInstance();
     public static HotelResource hotelresource = HotelResource.getInstance();
 
-    public static void start() {    
+    public void start() { 
+        boolean keepRunning = true;
         Scanner scanner = new Scanner(System.in);
-        String line = "";
-        do{
-            printMainMenu();
-            line = scanner.nextLine();
-            if (line.length() == 1) {
-                switch (line.charAt(0)) {
-                    case '1':
-                        findAndReserveARoom();
-                        break;
-                    case '2':
-                        seeMyReservations();
-                        break;
-                    case '3':
-                        createAnAccount();
-                        break;
-                    case '4':
-                        AdminMenu.start();
-                        break;
-                    case '5':
-                        System.out.println("Exit");
-                        break;
+        while (keepRunning) {
+            try {
+                printMainMenu();
+                int selection = Integer.parseInt(scanner.next());
+                if (selection == 1) {
+                    findAndReserveARoom();
+                } else if (selection == 2) {
+                    seeMyReservations();
+                } else if (selection == 3) {
+                    createAnAccount();
+                } else if (selection == 4) {
+                    System.out.println("ADMIN HAS BEEN CHOSEN!");
+                    AdminMenu adminMenu = new AdminMenu();
+                    adminMenu.start();
+                } else if (selection == 5) {
+                    System.out.println("YOU ARE GOING TO LEAVE THIS VERY COOL AND AWESOME APPLICATION NOW. GOODBYE");
+                    keepRunning = false;
                 }
-            } else {
-            System.out.println("Error: Invalid action\n");
+            } catch (Exception ex) {
+                System.out.println("THERE IS AN ERROR... \n CALCULATING............. \n MISTAKE FOUND, YOU MUST HAVE DONE SOMETHING,  FIX IT FAST BEFORE  YOUR PC EXPLODES THEN IMPLODES");
             }
-        } while (line.charAt(0) != '5' || line.length() != 1);
+        }
 
-    }
+    }   
+
     public static void findAndReserveARoom() {
         Collection<IRoom> roomsOpenForReserve = new HashSet<>();
         Scanner scanner = new Scanner(System.in);
@@ -92,7 +90,7 @@ public class MainMenu {
                         }
                         
                     }else if (option.equals("n")) {
-                        printMainMenu(); 
+                        return;
                     }
             } else {
                 System.out.println("There is no room available");

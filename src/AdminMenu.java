@@ -13,34 +13,31 @@ public class AdminMenu {
 
     private static AdminResource adminResource = AdminResource.getInstance();
 
-    public static void start() {
-        String line = "";
+    public void start() {
+        boolean keepRunning = true;
         Scanner scanner = new Scanner(System.in);
-        printMenu();
-        do {
-            line = scanner.nextLine();
-            if (line.length() == 1) {
-                switch (line.charAt(0)) {
-                    case '1':
-                        showCustomers();
-                        break;
-                    case '2':
-                        showRooms();
-                        break;
-                    case '3':
-                        showRervations();
-                        break;
-                    case '4':
-                        addARoom();
-                        break;
-                    case '5':
-                        MainMenu.printMainMenu();
-                        break;
+        while (keepRunning) {
+            try {
+                printMenu();
+                int selection = Integer.parseInt(scanner.next());
+                if (selection == 1) {
+                    showCustomers();
+                } else if (selection == 2) {
+                    showRooms();
+                } else if (selection == 3) {
+                    showRervations();
+                } else if (selection == 4) {
+                    addARoom();
+                } else if (selection == 5) {
+                    System.out.println("YOU ARE GOING BACK TO THE MAIN MENU. GOODBYE");
+                    MainMenu mainMenu = new MainMenu();
+                    mainMenu.start();
+                    keepRunning = false;
                 }
-            } else {
-                System.out.println("Error: Invalid action\n");
+            } catch (Exception e) {
+                System.out.println("THERE IS AN ERROR... \n CALCULATING............. \n MISTAKE FOUND, YOU MUST HAVE DONE SOMETHING,  FIX IT FAST BEFORE  YOUR PC EXPLODES THEN IMPLODES");
             }
-        } while (line.charAt(0) != '5' || line.length() != 1);
+        }
     }
 
     public static void showCustomers(){
@@ -117,12 +114,6 @@ public class AdminMenu {
             printMenu();
         }
     }
-
-
-    public static void BacktoMainMenu(){
-        MainMenu.start();
-    }
-
     private static void printMenu() {
         System.out.print("\nAdmin Menu\n" +
                 "--------------------------------------------\n" +
