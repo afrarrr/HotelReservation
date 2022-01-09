@@ -22,10 +22,7 @@ Reserving a Room – Requirements
 ### Room Requirements
 Room cost. Rooms will contain a price per night. When displaying rooms, paid rooms will display the price per night and free rooms will display "Free" or have a $0 price.
 Unique room numbers. Each room will have a unique room number, meaning that no two rooms can have the same room number.
-Room type. Rooms can be either single occupant or double occupant (Enumeration: SINGLE, DOUBLE).
+Room type. Rooms can be either single occupant or double occupant.
 
 ### Customer Requirements
-The application will have customer accounts. Each account has:
-A unique email for the customer. RegEx is used to check that the email is in the correct format (i.e., name@domain.com).
-A first name and last name.
-The email RegEx is simple for the purpose of this exercise and may not cover all real-world valid emails. For example "name@domain.co.uk" would not be accepted by the above RegEx because it does end with ".com". If you would like to try to make your RegEx more sophisticated, you may—but it is not required for this project.
+The application will have customer accounts. Each account has:A unique email for the customer. RegEx is used to check that the email is in the correct format. Customers have to register using the right format email address before they book a room.
